@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex, nofollow">
+  <title>六人日本跨年旅行 · 2026—2027 行程时间线</title>
+  <style>
+    :root {
+      --ink: #20332f;
+      --muted: #65736d;
+      --line: #dce3dc;
+      --green: #25715d;
+      --blue: #3566a0;
+      --orange: #a76529;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #e9ede7;
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    main { max-width: 1080px; margin: 28px auto; background: #fafbf6; }
+    header {
+      padding: 36px 38px 28px;
+      background: #203e34;
+      color: #fffdf5;
+      position: relative;
+      overflow: hidden;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      right: -45px;
+      top: -65px;
+      border: 36px solid #ffffff0a;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .eyebrow { font-size: 13px; letter-spacing: 3px; color: #c6dac8; }
+    h1 { font-size: 38px; line-height: 1.25; margin: 10px 0 12px; letter-spacing: 2px; }
+    .subtitle { font-size: 18px; color: #e1e9df; margin: 0; }
+    .pills { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 22px; }
+    .pills span { padding: 5px 12px; border: 1px solid #ffffff35; border-radius: 30px; font-size: 14px; }
+    .update-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 18px; font-size: 13px; color: #e1e9df; }
+    .refresh { font: inherit; padding: 6px 12px; border: 1px solid #ffffff70; border-radius: 6px; background: transparent; color: inherit; cursor: pointer; }
+    .refresh:hover, .refresh:focus-visible { background: #ffffff18; }
+    .content { padding: 24px 30px 28px; }
+    .time-note { margin: 0 0 20px; color: var(--muted); font-size: 14px; }
+    .groups, .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .group { border-top: 4px solid var(--accent); background: var(--tint); padding: 13px 16px; border-radius: 9px; }
+    .us { --accent: var(--green); --tint: #eaf3ed; }
+    .cd { --accent: var(--blue); --tint: #edf2f9; }
+    .ty { --accent: var(--orange); --tint: #faf0e5; }
+    .group strong { color: var(--accent); font-size: 17px; }
+    .group small { color: var(--muted); display: block; margin-top: 4px; }
+    .stage { margin-top: 24px; }
+    .stage-title { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; }
+    h2 { margin: 0; font-size: 24px; letter-spacing: .3px; }
+    .weekday { font-size: 15px; color: var(--muted); }
+    .stage-label { margin-left: auto; font-size: 14px; font-weight: 600; color: var(--green); }
+    .card {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-top: 3px solid var(--accent);
+      border-radius: 10px;
+      padding: 15px;
+      break-inside: avoid;
+    }
+    .owner { color: var(--accent); font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+    .route { font-size: 20px; font-weight: 700; margin: 0 0 2px; }
+    .flight { color: var(--muted); font-size: 13px; margin-bottom: 12px; }
+    .duration { display: inline-block; margin: -4px 0 12px; padding: 3px 8px; border-radius: 5px; background: var(--tint); color: var(--accent); font-size: 14px; font-weight: 600; }
+    .leg { display: grid; grid-template-columns: 1fr 22px 1fr; align-items: start; gap: 5px; }
+    .clock { display: block; font-size: 27px; font-weight: 750; font-variant-numeric: tabular-nums; line-height: 1.2; }
+    .airport { display: block; font-size: 13px; color: var(--muted); margin-top: 5px; }
+    .arrow { color: #8a9991; padding-top: 4px; text-align: center; }
+    .date { font-size: 12px; color: var(--accent); display: block; margin-top: 3px; font-weight: 600; }
+    .note { border-top: 1px solid #edf0eb; margin: 12px 0 0; padding-top: 10px; font-size: 13px; }
+    .warn { color: #975219; font-weight: 600; }
+    .meeting { padding: 13px 17px; background: #eaf1e7; border-radius: 8px; margin-top: 12px; font-size: 15px; }
+    .meeting strong { color: #285a43; }
+    .holiday {
+      margin-top: 24px;
+      border: 1px solid #d9e1d0;
+      border-radius: 10px;
+      padding: 21px 23px;
+      background: #eff3e6;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .holiday h2 { font-size: 23px; }
+    .holiday p { margin: 5px 0 0; font-size: 14px; color: var(--muted); }
+    .holiday .big { font-size: 28px; white-space: nowrap; font-weight: 700; color: #456342; }
+    .last-note { margin-top: 14px; padding: 18px 21px; border-radius: 10px; background: #f1f3ed; }
+    .last-note h3 { margin: 0 0 7px; font-size: 17px; }
+    .last-note p { margin: 6px 0; font-size: 14px; color: var(--muted); }
+    footer { margin-top: 24px; border-top: 1px solid var(--line); padding-top: 16px; font-size: 12px; color: var(--muted); }
+    footer p { margin: 5px 0; }
+    @media (max-width: 700px) {
+      main { margin: 0; }
+      header { padding: 27px 20px; }
+      h1 { font-size: 30px; }
+      .subtitle { font-size: 16px; }
+      .content { padding: 20px 16px; }
+      .groups { grid-template-columns: 1fr; gap: 8px; }
+      .group { padding: 10px 14px; }
+      .group small { display: inline; margin-left: 8px; }
+      .cards { grid-template-columns: 1fr; }
+      .card { padding: 16px 18px; }
+      .clock { font-size: 30px; }
+      .stage-label { margin-left: 0; }
+      .holiday { display: block; padding: 18px; }
+      .holiday .big { margin-top: 12px; font-size: 24px; }
+    }
+    @media print {
+      @page { size: A3 portrait; margin: 10mm; }
+      body { background: #fff; }
+      main { margin: 0 auto; max-width: 1080px; }
+      header { padding-top: 25px; padding-bottom: 22px; }
+      .stage, .holiday { margin-top: 18px; }
+      .stage-title { break-after: avoid; }
+      .groups, .cards, .holiday, .last-note { break-inside: avoid; }
+      .refresh { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="eyebrow">JAPAN · FAMILY TRIP · 2026 / 2027</div>
+      <h1>六人同行，日本跨年</h1>
+      <p class="subtitle">从三地出发，在东京相聚，再各自平安回家。</p>
+      <div class="pills">
+        <span>出发 2026.12.23</span>
+        <span>相聚 12.24—01.01</span>
+        <span>1.1 从日本离开</span>
+      </div>
+      <div class="update-bar">
+        <span>最后更新：<time datetime="2026-09-21T11:39:00-07:00">2026.09.21 11:39（美国太平洋时间）</time></span>
+        <button class="refresh" id="refresh-page" type="button" hidden>刷新最新行程</button>
+      </div>
+    </header>
+    <div class="content">
+      <p class="time-note"><strong>时间读法：</strong>起飞、抵达均为所在城市的当地时间。日本 UTC+9 · 中国 UTC+8 · 圣何塞冬令时 UTC−8。</p>
+      <section class="groups" aria-label="六位同行家人">
+        <div class="group us">
+          <strong>丁超乐乐组 · 圣何塞</strong>
+          <small>圣何塞 ⇄ 东京</small>
+        </div>
+        <div class="group cd">
+          <strong>超爸妈 · 成都</strong>
+          <small>成都 → 福州 → 东京 → 成都</small>
+        </div>
+        <div class="group ty">
+          <strong>乐妈、小姨 · 太原</strong>
+          <small>太原 ⇄ 厦门 ⇄ 东京</small>
+        </div>
+      </section>
+
+      <section class="stage" aria-labelledby="day-23">
+        <div class="stage-title">
+          <h2 id="day-23">12 月 23 日</h2><span class="weekday">2026 · 周三</span>
+          <span class="stage-label">各地出发 · 时间按各自当地显示</span>
+        </div>
+        <div class="cards">
+          <article class="card us">
+            <div class="owner">丁超乐乐组</div>
+            <h3 class="route">圣何塞 → 东京</h3>
+            <div class="flight">ZIPAIR · ZG029 · 跨夜直飞</div>
+            <div class="duration">飞行时长 11 小时 20 分</div>
+            <div class="leg">
+              <div><span class="clock">10:10</span><span class="airport">圣何塞 SJC · B 航站楼</span><span class="date">12/23 · 美国时间</span></div>
+              <span class="arrow">→</span>
+              <div><span class="clock">14:30</span><span class="airport">成田 NRT · T1</span><span class="date">12/24 · 日本时间（次日）</span></div>
+            </div>
+            <p class="note">跨越国际日期变更线，<strong>日本当地 24 日抵达</strong>。</p>
+          </article>
+          <article class="card cd">
+            <div class="owner">超爸妈</div>
+            <h3 class="route">成都 → 福州</h3>
+            <div class="flight">厦门航空 · MF8436</div>
+            <div class="duration">飞行时长 2 小时 30 分</div>
+            <div class="leg">
+              <div><span class="clock">11:55</span><span class="airport">天府 TFU · T2</span></div>
+              <span class="arrow">→</span>
+              <div><span class="clock">14:25</span><span class="airport">长乐 FOC · T2</span></div>
+            </div>
+            <p class="note"><strong>福州过夜中转 19 小时 05 分</strong><br>提供免费中转住宿。<br><span class="warn">行李不直挂：需提取并重新托运。</span></p>
+          </article>
+          <article class="card ty">
+            <div class="owner">乐妈、小姨</div>
+            <h3 class="route">太原 → 厦门</h3>
+            <div class="flight">厦门航空 · MF8152</div>
+            <div class="duration">飞行时长 2 小时 35 分</div>
+            <div class="leg">
+              <div><span class="clock">11:50</span><span class="airport">武宿 TYN · T2</span></div>
+              <span class="arrow">→</span>
+              <div><span class="clock">14:25</span><span class="airport">高崎 XMN · T3</span></div>
+            </div>
+            <p class="note"><strong>厦门过夜中转 18 小时 55 分</strong><br>提供免费中转住宿。<br>行程单注明行李直挂。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="stage" aria-labelledby="day-24">
+        <div class="stage-title">
+          <h2 id="day-24">12 月 24 日</h2><span class="weekday">2026 · 周四</span>
+          <span class="stage-label">抵达东京 · 三组均在成田 T1</span>
+        </div>
+        <div class="cards">
+          <article class="card us">
+            <div class="owner">丁超乐乐组</div>
+            <h3 class="route">圣何塞航班抵达</h3>
+            <div class="flight">ZIPAIR · ZG029 · 接前一天去程</div>
+            <div class="duration">飞行时长 11 小时 20 分</div>
+            <div><span class="clock">14:30</span><span class="airport">东京成田 NRT · T1 · 日本时间</span></div>
+            <p class="note">三组计划落地时间相差 <strong>50 分钟</strong>。</p>
+          </article>
+          <article class="card cd">
+            <div class="owner">超爸妈</div>
+            <h3 class="route">福州 → 东京</h3>
+            <div class="flight">厦门航空 · MF809</div>
+            <div class="duration">飞行时长 3 小时 10 分</div>
+            <div class="leg">
+              <div><span class="clock">09:30</span><span class="airport">长乐 FOC · T2</span><span class="date">中国时间</span></div>
+              <span class="arrow">→</span>
+              <div><span class="clock">13:40</span><span class="airport">成田 NRT · T1</span><span class="date">日本时间</span></div>
+            </div>
+          </article>
+          <article class="card ty">
+            <div class="owner">乐妈、小姨</div>
+            <h3 class="route">厦门 → 东京</h3>
+            <div class="flight">厦门航空 · MF815</div>
+            <div class="duration">飞行时长 3 小时 25 分</div>
+            <div class="leg">
+              <div><span class="clock">09:20</span><span class="airport">高崎 XMN · T3</span><span class="date">中国时间</span></div>
+              <span class="arrow">→</span>
+              <div><span class="clock">13:45</span><span class="airport">成田 NRT · T1</span><span class="date">日本时间</span></div>
+            </div>
+          </article>
+        </div>
+        <div class="meeting"><strong>会合建议：</strong>等全员入境、提取行李后，在成田 T1 到达大厅碰面；具体集合点待定。<strong>14:30 是最后一组计划落地时间，不是会合时间。</strong></div>
+      </section>
+
+      <section class="holiday" aria-label="日本共同旅行期间">
+        <div>
+          <h2>12.24—01.01 · 六人在日本相聚</h2>
+          <p>按航班日期计算：在日跨 9 个日历日、8 晚；12.25—12.31 为 7 个完整游玩日。</p>
+          <p>日本酒店、城市间交通、游玩安排尚未提供，本页不作预设。</p>
+        </div>
+        <div class="big">一起跨年</div>
+      </section>
+
+      <section class="stage" aria-labelledby="day-01">
+        <div class="stage-title">
+          <h2 id="day-01">1 月 1 日</h2><span class="weekday">2027 · 周五</span>
+          <span class="stage-label">成田 T1 返程 · 三组各自回家</span>
+        </div>
+        <div class="cards">
+          <article class="card us">
+            <div class="owner">丁超乐乐组</div>
+            <h3 class="route">东京 → 圣何塞</h3>
+            <div class="flight">ZIPAIR · ZG030</div>
+            <div class="duration">飞行时长 9 小时 20 分</div>
+            <div class="leg">
+              <div><span class="clock">16:00</span><span class="airport">成田 NRT · T1</span><span class="date">01/01 · 日本时间</span></div>
+              <span class="arrow">→</span>
+              <div><span class="clock">08:20</span><span class="airport">圣何塞 SJC · B 航站楼</span><span class="date">01/01 · 美国时间</span></div>
+            </div>
+            <p class="note"><strong>抵达仍是元旦早上</strong>，因跨越日期变更线。</p>
+          </article>
+          <article class="card cd">
+            <div class="owner">超爸妈</div>
+            <h3 class="route">东京 → 成都</h3>
+            <div class="flight">四川航空 · 3U3962 · 直飞</div>
+            <div class="duration">飞行时长 6 小时 10 分</div>
+            <div class="leg">
+              <div><span class="clock">16:40</span><span class="airport">成田 NRT · T1</span><span class="date">日本时间</span></div>
+              <span class="arrow">→</span>
+              <div><span class="clock">21:50</span><span class="airport">天府 TFU · T1</span><span class="date">中国时间 · 当日</span></div>
+            </div>
+            <p class="note">票面托运行李：<strong>每人 2 件（2PC）</strong>。<br>单件重量限制请另向航司确认。</p>
+          </article>
+          <article class="card ty">
+            <div class="owner">乐妈、小姨</div>
+            <h3 class="route">东京 → 厦门</h3>
+            <div class="flight">厦门航空 · MF816</div>
+            <div class="duration">飞行时长 4 小时 30 分</div>
+            <div class="leg">
+              <div><span class="clock">14:55</span><span class="airport">成田 NRT · T1</span><span class="date">日本时间</span></div>
+              <span class="arrow">→</span>
+              <div><span class="clock">18:25</span><span class="airport">高崎 XMN · T3</span><span class="date">中国时间</span></div>
+            </div>
+            <p class="note"><strong>厦门过夜中转 21 小时 35 分</strong><br>提供免费中转住宿。<br>行程单注明行李直挂；次日飞太原。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="stage" aria-labelledby="day-02">
+        <div class="stage-title">
+          <h2 id="day-02">1 月 2 日</h2><span class="weekday">2027 · 周六</span>
+          <span class="stage-label">最后一程 · 乐妈、小姨回到太原</span>
+        </div>
+        <div class="cards">
+          <article class="card us">
+            <div class="owner">丁超乐乐组</div>
+            <h3 class="route">返程结束 · 圣何塞</h3>
+            <p class="note">按行程于 <strong>1/1 08:20</strong> 抵达。<br>美国当地时间 · 本日无后续航班。</p>
+          </article>
+          <article class="card cd">
+            <div class="owner">超爸妈</div>
+            <h3 class="route">返程结束 · 成都</h3>
+            <p class="note">按行程于 <strong>1/1 21:50</strong> 抵达。<br>中国当地时间 · 本日无后续航班。</p>
+          </article>
+          <article class="card ty">
+            <div class="owner">乐妈、小姨</div>
+            <h3 class="route">厦门 → 太原</h3>
+            <div class="flight">厦门航空 · MF8153 · 中国时间</div>
+            <div class="duration">飞行时长 2 小时 55 分</div>
+            <div class="leg">
+              <div><span class="clock">16:00</span><span class="airport">高崎 XMN · T3</span></div>
+              <span class="arrow">→</span>
+              <div><span class="clock">18:55</span><span class="airport">武宿 TYN · T2</span></div>
+            </div>
+          </article>
+        </div>
+        <aside class="last-note">
+          <h3>出发前记得确认</h3>
+          <p><strong>免费中转住宿：</strong>12/23 福州（超爸妈）、12/23 厦门及 1/1 厦门（乐妈、小姨）均提供免费住宿；出发前确认酒店名称及入住方式。</p>
+          <p><strong>行李与中转：</strong>福州去程不直挂；厦门去返程虽标注直挂，仍需向航司确认入境海关及过夜中转的提取要求。</p>
+          <p><strong>值机时间：</strong>ZIPAIR 要求最晚起飞前 1 小时完成柜台值机及托运；这不是建议到机场的时间，应预留充足余量。</p>
+        </aside>
+      </section>
+
+      <footer>
+        <p><strong>资料说明：</strong>根据提供的 5 份 PDF 与 2 封川航电子客票邮件整理，资料日期 2026.09.18；航班时间及航站楼以航司最新通知为准。</p>
+        <p>飞行时长按计划起降时间计算，已计入时差及跨日，不含中转等待；实际耗时以当日航班为准。</p>
+        <p>川航邮件航班日期仅写「01JAN」；结合 2026 年出票日期及本次跨年行程，按 2027.01.01 整理。福州、厦门中转免费住宿已由家人确认；会合位置、日本住宿与游玩安排未确认。</p>
+        <p>家庭分享版 · 已省略英文姓名、座位号、订位号、票号、联系方式和付款资料。请收藏本页，查看行程时留意最后更新时间。</p>
+      </footer>
+    </div>
+  </main>
+  <script>
+    const refreshButton = document.getElementById('refresh-page');
+    refreshButton.hidden = false;
+    refreshButton.addEventListener('click', () => {
+      const url = new URL(window.location.href);
+      url.searchParams.set('v', Date.now().toString());
+      window.location.replace(url.href);
+    });
+  </script>
+</body>
+</html>
