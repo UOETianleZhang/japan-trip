@@ -53,10 +53,24 @@
     .update-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 18px; font-size: 13px; color: #e1e9df; }
     .refresh { font: inherit; padding: 6px 12px; border: 1px solid #ffffff70; border-radius: 6px; background: transparent; color: inherit; cursor: pointer; }
     .refresh:hover, .refresh:focus-visible { background: #ffffff18; }
-    .group-filter { display: none; }
+    .group-filter:not([hidden]) { display: block; position: sticky; top: 0; z-index: 10; padding: 14px 30px; background: #fafbf6; border-bottom: 1px solid var(--line); box-shadow: 0 3px 8px #20332f0a; }
+    .filter-buttons { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+    .filter-buttons button { min-height: 44px; border: 1px solid var(--line); border-radius: 7px; padding: 7px 5px; font: inherit; font-size: 14px; color: var(--ink); background: #fff; cursor: pointer; }
+    .filter-buttons button[aria-pressed="true"] { background: #203e34; color: #fff; border-color: #203e34; }
+    .filter-buttons button:focus-visible { outline: 3px solid #a76529; outline-offset: 1px; }
+    .filter-description { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
     .content { padding: 24px 30px 28px; }
     .time-note { margin: 0 0 20px; color: var(--muted); font-size: 14px; }
     .groups, .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    main:not([data-group="all"]) .groups,
+    main:not([data-group="all"]) .cards { grid-template-columns: 1fr; }
+    main[data-group="us"] .groups > :not(.us),
+    main[data-group="us"] .cards > :not(.us),
+    main[data-group="cd"] .groups > :not(.cd),
+    main[data-group="cd"] .cards > :not(.cd),
+    main[data-group="ty"] .groups > :not(.ty),
+    main[data-group="ty"] .cards > :not(.ty) { display: none; }
+    main:not([data-group="all"]) .card .leg { max-width: 510px; }
     .group { border-top: 4px solid var(--accent); background: var(--tint); padding: 13px 16px; border-radius: 9px; }
     .us { --accent: var(--green); --tint: #eaf3ed; }
     .cd { --accent: var(--blue); --tint: #edf2f9; }
@@ -107,6 +121,10 @@
     .shared-card + .shared-card { margin-top: 12px; }
     .shared-card h3 { margin: 0 0 9px; font-size: 20px; }
     .shared-card p { margin: 8px 0; }
+    .illustrated-plan { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 24px; align-items: center; }
+    .trip-art { margin: 0; min-width: 0; }
+    .trip-art img { display: block; width: 100%; height: auto; border-radius: 9px; }
+    .trip-art figcaption { margin-top: 8px; color: var(--muted); font-size: 12px; letter-spacing: 1px; text-align: center; }
     .shared-flight { --accent: var(--green); --tint: #eaf3ed; }
     .shared-flight .leg { max-width: 510px; }
     .shared-label { color: var(--green); font-size: 13px; font-weight: 700; margin-bottom: 8px; }
@@ -121,7 +139,7 @@
     .common-notice { margin-top: 20px; background: #eff3e6; }
     .todo-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 24px; }
     .todo-list li { break-inside: avoid; }
-    section[id] { scroll-margin-top: 20px; }
+    section[id] { scroll-margin-top: 125px; }
     .last-note { margin-top: 14px; padding: 18px 21px; border-radius: 10px; background: #f1f3ed; }
     .last-note h3 { margin: 0 0 7px; font-size: 17px; }
     .last-note p { margin: 6px 0; font-size: 14px; color: var(--muted); }
@@ -140,21 +158,12 @@
       .stage-label { margin-left: 0; }
       .holiday { display: block; padding: 18px; }
       .holiday .big { margin-top: 12px; font-size: 24px; }
-      .group-filter:not([hidden]) { display: block; position: sticky; top: 0; z-index: 10; padding: 12px 16px; background: #fafbf6; border-bottom: 1px solid var(--line); box-shadow: 0 3px 8px #20332f0a; }
-      .filter-buttons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
-      .filter-buttons button { min-height: 44px; border: 1px solid var(--line); border-radius: 7px; padding: 7px 5px; font: inherit; font-size: 14px; color: var(--ink); background: #fff; cursor: pointer; }
-      .filter-buttons button[aria-pressed="true"] { background: #203e34; color: #fff; border-color: #203e34; }
-      .filter-buttons button:focus-visible { outline: 3px solid #a76529; outline-offset: 1px; }
-      .filter-description { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
-      main[data-group="us"] .groups > :not(.us),
-      main[data-group="us"] .cards > :not(.us),
-      main[data-group="cd"] .groups > :not(.cd),
-      main[data-group="cd"] .cards > :not(.cd),
-      main[data-group="ty"] .groups > :not(.ty),
-      main[data-group="ty"] .cards > :not(.ty) { display: none; }
+      .group-filter:not([hidden]) { padding: 12px 16px; }
+      .filter-buttons { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
       .shared-card { padding: 16px; }
       .shared-card h3 { font-size: 19px; }
       .todo-list { grid-template-columns: 1fr; gap: 0; }
+      .illustrated-plan { grid-template-columns: 1fr; gap: 18px; }
       section[id] { scroll-margin-top: 170px; }
     }
     @media print {
@@ -181,7 +190,7 @@
         <span>1.1 从日本离开</span>
       </div>
       <div class="update-bar">
-        <span>最后更新：<time datetime="2026-09-21T13:06:00-07:00">2026.09.21 13:06（美国太平洋时间）</time></span>
+        <span>最后更新：<time datetime="2026-09-21T13:46:00-07:00">2026.09.21 13:46（美国太平洋时间）</time></span>
         <button class="refresh" id="refresh-page" type="button" hidden>刷新最新行程</button>
       </div>
     </header>
@@ -341,13 +350,19 @@
           </div>
           <p class="note">行程单要求最晚起飞前 60 分钟完成值机，即 <strong>06:25 前</strong>完成；请更早抵达机场。</p>
         </article>
-        <div class="shared-card">
-          <h3>函馆自由活动 <span class="status tentative">随天气调整</span></h3>
-          <ul class="plan-list">
-            <li>元町、湾区、函馆山、Christmas Fantasy 圣诞活动，按当天天气和体力选择。</li>
-            <li>午餐候选：うに むらかみ（Uni Murakami），尚待预订。</li>
-          </ul>
-          <p class="stay"><strong>住宿安排：</strong>SHOGUN VILLA，1 晚。</p>
+        <div class="shared-card illustrated-plan">
+          <figure class="trip-art">
+            <img src="assets/hokkaido-winter.svg" width="1000" height="600" alt="北海道冬日原创插画：雪山、海湾与暖灯小屋" loading="lazy" decoding="async">
+            <figcaption>HOKKAIDO · 雪国慢旅行</figcaption>
+          </figure>
+          <div>
+            <h3>函馆自由活动 <span class="status tentative">随天气调整</span></h3>
+            <ul class="plan-list">
+              <li>元町、湾区、函馆山、Christmas Fantasy 圣诞活动，按当天天气和体力选择。</li>
+              <li>午餐候选：うに むらかみ（Uni Murakami），尚待预订。</li>
+            </ul>
+            <p class="stay"><strong>住宿安排：</strong>SHOGUN VILLA，1 晚。</p>
+          </div>
         </div>
       </section>
 
@@ -388,13 +403,19 @@
           <h2 id="title-28">12 月 28 日</h2><span class="weekday">2026 · 周一</span>
           <span class="stage-label">六人同行 · 定山溪温泉</span>
         </div>
-        <div class="shared-card">
-          <h3>奥定山溪温泉 佳松御苑 <span class="status confirmed">住宿已订</span></h3>
-          <ul class="plan-list">
-            <li>计划从札幌站乘酒店免费接驳前往佳松御苑，接驳预约等待回复。</li>
-            <li>3 间房、6 位成人；温泉 + 晚餐 + 早餐。</li>
-          </ul>
-          <p class="stay"><strong>住宿：</strong>Oku Jozankei Onsen Kasho Gyoen。</p>
+        <div class="shared-card illustrated-plan">
+          <figure class="trip-art">
+            <img src="assets/onsen-retreat.svg" width="1000" height="600" alt="雪中温泉原创插画：松林、日式旅馆和氤氲的露天汤池" loading="lazy" decoding="async">
+            <figcaption>JOZANKEI · 把冬天泡进温泉</figcaption>
+          </figure>
+          <div>
+            <h3>奥定山溪温泉 佳松御苑 <span class="status confirmed">住宿已订</span></h3>
+            <ul class="plan-list">
+              <li>计划从札幌站乘酒店免费接驳前往佳松御苑，接驳预约等待回复。</li>
+              <li>3 间房、6 位成人；温泉 + 晚餐 + 早餐。</li>
+            </ul>
+            <p class="stay"><strong>住宿：</strong>Oku Jozankei Onsen Kasho Gyoen。</p>
+          </div>
         </div>
       </section>
 
@@ -441,9 +462,15 @@
           <h2 id="title-31">12 月 31 日</h2><span class="weekday">2026 · 周四</span>
           <span class="stage-label">六人共同安排 · 东京跨年</span>
         </div>
-        <div class="shared-card">
-          <h3>自由活动，一起迎接新年 <span class="status tentative">暂定</span></h3>
-          <p>白天自由安排购物、咖啡；跨年夜可考虑除夜钟、跨年活动，或在跨年后初诣。候选地点：增上寺、明治神宫，开放情况及活动安排待确认。</p>
+        <div class="shared-card illustrated-plan">
+          <figure class="trip-art">
+            <img src="assets/tokyo-night.svg" width="1000" height="600" alt="东京跨年原创插画：月光、灯火与红色东京塔" loading="lazy" decoding="async">
+            <figcaption>TOKYO · 在灯火里迎接新年</figcaption>
+          </figure>
+          <div>
+            <h3>自由活动，一起迎接新年 <span class="status tentative">暂定</span></h3>
+            <p>白天自由安排购物、咖啡；跨年夜可考虑除夜钟、跨年活动，或在跨年后初诣。候选地点：增上寺、明治神宫，开放情况及活动安排待确认。</p>
+          </div>
         </div>
       </section>
 
