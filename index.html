@@ -53,6 +53,7 @@
     .update-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 18px; font-size: 13px; color: #e1e9df; }
     .refresh { font: inherit; padding: 6px 12px; border: 1px solid #ffffff70; border-radius: 6px; background: transparent; color: inherit; cursor: pointer; }
     .refresh:hover, .refresh:focus-visible { background: #ffffff18; }
+    .group-filter { display: none; }
     .content { padding: 24px 30px 28px; }
     .time-note { margin: 0 0 20px; color: var(--muted); font-size: 14px; }
     .groups, .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
@@ -102,11 +103,28 @@
     .holiday h2 { font-size: 23px; }
     .holiday p { margin: 5px 0 0; font-size: 14px; color: var(--muted); }
     .holiday .big { font-size: 28px; white-space: nowrap; font-weight: 700; color: #456342; }
+    .shared-card { padding: 20px; border: 1px solid var(--line); border-radius: 10px; background: #fff; overflow-wrap: anywhere; }
+    .shared-card + .shared-card { margin-top: 12px; }
+    .shared-card h3 { margin: 0 0 9px; font-size: 20px; }
+    .shared-card p { margin: 8px 0; }
+    .shared-flight { --accent: var(--green); --tint: #eaf3ed; }
+    .shared-flight .leg { max-width: 510px; }
+    .shared-label { color: var(--green); font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+    .status { display: inline-block; border-radius: 5px; padding: 2px 8px; font-size: 13px; font-weight: 600; vertical-align: middle; }
+    .confirmed { color: #246448; background: #e8f3e8; }
+    .tentative { color: #88521e; background: #fff1dc; }
+    .plan-list { margin: 8px 0 0; padding-left: 21px; }
+    .plan-list li { margin: 7px 0; }
+    .stay { padding-top: 10px; border-top: 1px solid #edf0eb; color: #475e52; }
+    .notice-links { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 12px; }
+    .notice-links a { color: var(--green); text-underline-offset: 3px; }
+    .common-notice { margin-top: 20px; background: #eff3e6; }
+    .todo-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 24px; }
+    .todo-list li { break-inside: avoid; }
+    section[id] { scroll-margin-top: 20px; }
     .last-note { margin-top: 14px; padding: 18px 21px; border-radius: 10px; background: #f1f3ed; }
     .last-note h3 { margin: 0 0 7px; font-size: 17px; }
     .last-note p { margin: 6px 0; font-size: 14px; color: var(--muted); }
-    footer { margin-top: 24px; border-top: 1px solid var(--line); padding-top: 16px; font-size: 12px; color: var(--muted); }
-    footer p { margin: 5px 0; }
     @media (max-width: 700px) {
       main { margin: 0; }
       header { padding: 27px 20px; }
@@ -122,6 +140,22 @@
       .stage-label { margin-left: 0; }
       .holiday { display: block; padding: 18px; }
       .holiday .big { margin-top: 12px; font-size: 24px; }
+      .group-filter:not([hidden]) { display: block; position: sticky; top: 0; z-index: 10; padding: 12px 16px; background: #fafbf6; border-bottom: 1px solid var(--line); box-shadow: 0 3px 8px #20332f0a; }
+      .filter-buttons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px; }
+      .filter-buttons button { min-height: 44px; border: 1px solid var(--line); border-radius: 7px; padding: 7px 5px; font: inherit; font-size: 14px; color: var(--ink); background: #fff; cursor: pointer; }
+      .filter-buttons button[aria-pressed="true"] { background: #203e34; color: #fff; border-color: #203e34; }
+      .filter-buttons button:focus-visible { outline: 3px solid #a76529; outline-offset: 1px; }
+      .filter-description { font-size: 12px; color: var(--muted); margin: 8px 0 0; }
+      main[data-group="us"] .groups > :not(.us),
+      main[data-group="us"] .cards > :not(.us),
+      main[data-group="cd"] .groups > :not(.cd),
+      main[data-group="cd"] .cards > :not(.cd),
+      main[data-group="ty"] .groups > :not(.ty),
+      main[data-group="ty"] .cards > :not(.ty) { display: none; }
+      .shared-card { padding: 16px; }
+      .shared-card h3 { font-size: 19px; }
+      .todo-list { grid-template-columns: 1fr; gap: 0; }
+      section[id] { scroll-margin-top: 170px; }
     }
     @media print {
       @page { size: A3 portrait; margin: 10mm; }
@@ -131,26 +165,35 @@
       .stage, .holiday { margin-top: 18px; }
       .stage-title { break-after: avoid; }
       .groups, .cards, .holiday, .last-note { break-inside: avoid; }
-      .refresh { display: none; }
+      .refresh, .group-filter { display: none !important; }
     }
   </style>
 </head>
 <body>
-  <main>
+  <main data-group="all">
     <header>
       <div class="eyebrow">JAPAN · FAMILY TRIP · 2026 / 2027</div>
       <h1>六人同行，日本跨年</h1>
-      <p class="subtitle">从三地出发，在东京相聚，再各自平安回家。</p>
+      <p class="subtitle">北海道看雪、泡温泉，再回东京一起跨年。</p>
       <div class="pills">
         <span>出发 2026.12.23</span>
         <span>相聚 12.24—01.01</span>
         <span>1.1 从日本离开</span>
       </div>
       <div class="update-bar">
-        <span>最后更新：<time datetime="2026-09-21T11:39:00-07:00">2026.09.21 11:39（美国太平洋时间）</time></span>
+        <span>最后更新：<time datetime="2026-09-21T13:06:00-07:00">2026.09.21 13:06（美国太平洋时间）</time></span>
         <button class="refresh" id="refresh-page" type="button" hidden>刷新最新行程</button>
       </div>
     </header>
+    <nav class="group-filter" id="group-filter" aria-label="选择要查看的家庭组" hidden>
+      <div class="filter-buttons">
+        <button type="button" data-select-group="all" aria-pressed="true">全部家人</button>
+        <button type="button" data-select-group="us" aria-pressed="false">丁超乐乐组</button>
+        <button type="button" data-select-group="cd" aria-pressed="false">超爸妈</button>
+        <button type="button" data-select-group="ty" aria-pressed="false">乐妈、小姨</button>
+      </div>
+      <p class="filter-description" id="filter-description" role="status" aria-live="polite">显示全部家人行程；公共行程和通知始终保留。</p>
+    </nav>
     <div class="content">
       <p class="time-note"><strong>时间读法：</strong>起飞、抵达均为所在城市的当地时间。日本 UTC+9 · 中国 UTC+8 · 圣何塞冬令时 UTC−8。</p>
       <section class="groups" aria-label="六位同行家人">
@@ -166,6 +209,18 @@
           <strong>乐妈、小姨 · 太原</strong>
           <small>太原 ⇄ 厦门 ⇄ 东京</small>
         </div>
+      </section>
+
+      <section class="shared-card common-notice" id="shared-notices" aria-labelledby="notices-title">
+        <div class="shared-label">公共通知 · 所有组都适用</div>
+        <h2 id="notices-title">先记住这几件事</h2>
+        <ul class="plan-list">
+          <li><strong>12/24 成田抵达，12/25 羽田起飞：</strong>不是同一个机场。会合后前往羽田周边酒店，次日搭乘 07:25 早班机。</li>
+          <li><strong>两段日本国内机票，六人均已订：</strong>12/25 JL0585 羽田 → 函馆；12/29 NH074 新千岁 → 羽田。</li>
+          <li><strong>免费中转住宿：</strong>福州、厦门均提供；酒店名称及入住方式出发前确认。</li>
+          <li><strong>游玩安排可调整：</strong>天气、交通和营业情况优先；只有明确标为“已订”的项目按已订展示。</li>
+        </ul>
+        <div class="notice-links"><a href="#day-25">日本共同旅程</a><a href="#shared-todos">查看预订待办</a><a href="#day-01">元旦返程</a></div>
       </section>
 
       <section class="stage" aria-labelledby="day-23">
@@ -251,22 +306,153 @@
           </article>
         </div>
         <div class="meeting"><strong>会合建议：</strong>等全员入境、提取行李后，在成田 T1 到达大厅碰面；具体集合点待定。<strong>14:30 是最后一组计划落地时间，不是会合时间。</strong></div>
+        <div class="shared-card" style="margin-top: 12px">
+          <div class="shared-label">六人共同安排</div>
+          <h3>东京过夜 · 休息、倒时差</h3>
+          <p>当天不安排正式游玩，入境后前往羽田周边，为次日早班机做准备。</p>
+          <p class="stay"><strong>住宿安排：</strong>Mercure Tokyo Haneda Airport。</p>
+          <p class="warn">成田 NRT 与羽田 HND 是不同机场，跨机场交通及次日清晨出发时间需提前安排。</p>
+        </div>
       </section>
 
       <section class="holiday" aria-label="日本共同旅行期间">
         <div>
-          <h2>12.24—01.01 · 六人在日本相聚</h2>
-          <p>按航班日期计算：在日跨 9 个日历日、8 晚；12.25—12.31 为 7 个完整游玩日。</p>
-          <p>日本酒店、城市间交通、游玩安排尚未提供，本页不作预设。</p>
+          <h2>北海道 + 东京 · 六人共同旅程</h2>
+          <p>东京过夜 → 函馆 → 洞爷湖 → 札幌 / 小樽 → 定山溪温泉 → 东京</p>
+          <p>12.24—01.01，共 9 个日历日、8 晚；以下为当前计划，可灵活调整。</p>
         </div>
         <div class="big">一起跨年</div>
       </section>
 
-      <section class="stage" aria-labelledby="day-01">
+      <section class="stage" id="day-25" aria-labelledby="title-25">
         <div class="stage-title">
-          <h2 id="day-01">1 月 1 日</h2><span class="weekday">2027 · 周五</span>
+          <h2 id="title-25">12 月 25 日</h2><span class="weekday">2026 · 周五</span>
+          <span class="stage-label">六人同行 · 飞往函馆</span>
+        </div>
+        <article class="shared-card shared-flight">
+          <div class="shared-label">全部六人 <span class="status confirmed">机票已订</span></div>
+          <h3>东京羽田 → 函馆</h3>
+          <div class="flight">日本航空 · JL0585 · 日本当地时间</div>
+          <div class="duration">飞行时长 1 小时 20 分</div>
+          <div class="leg">
+            <div><span class="clock">07:25</span><span class="airport">羽田 HND · T1</span></div>
+            <span class="arrow">→</span>
+            <div><span class="clock">08:45</span><span class="airport">函馆 HKD</span></div>
+          </div>
+          <p class="note">行程单要求最晚起飞前 60 分钟完成值机，即 <strong>06:25 前</strong>完成；请更早抵达机场。</p>
+        </article>
+        <div class="shared-card">
+          <h3>函馆自由活动 <span class="status tentative">随天气调整</span></h3>
+          <ul class="plan-list">
+            <li>元町、湾区、函馆山、Christmas Fantasy 圣诞活动，按当天天气和体力选择。</li>
+            <li>午餐候选：うに むらかみ（Uni Murakami），尚待预订。</li>
+          </ul>
+          <p class="stay"><strong>住宿安排：</strong>SHOGUN VILLA，1 晚。</p>
+        </div>
+      </section>
+
+      <section class="stage" aria-labelledby="title-26">
+        <div class="stage-title">
+          <h2 id="title-26">12 月 26 日</h2><span class="weekday">2026 · 周六</span>
+          <span class="stage-label">六人同行 · 洞爷湖 → 札幌</span>
+        </div>
+        <div class="shared-card">
+          <h3>函馆出发，途中游洞爷湖 <span class="status tentative">具体车次待定</span></h3>
+          <ul class="plan-list">
+            <li>上午从函馆出发，中途停留洞爷湖，游览湖畔、温泉街及灯饰。</li>
+            <li>晚餐候选：寿司处 あい川（生食组），或附近熟食餐厅（熟食组）。</li>
+            <li>晚上计划乘 Hokuto 前往札幌，指定席待预订。</li>
+          </ul>
+          <p class="stay"><strong>住宿安排：</strong>Comfort Hotel ERA Sapporo North。</p>
+        </div>
+      </section>
+
+      <section class="stage" aria-labelledby="title-27">
+        <div class="stage-title">
+          <h2 id="title-27">12 月 27 日</h2><span class="weekday">2026 · 周日</span>
+          <span class="stage-label">六人同行 · 小樽一日游</span>
+        </div>
+        <div class="shared-card">
+          <h3>小樽运河、堺町通 <span class="status tentative">游船及晚餐待订</span></h3>
+          <ul class="plan-list">
+            <li>白天自由游览小樽运河、堺町通。</li>
+            <li>计划体验 Blue Canal 和 Night Cruise，晚上返回札幌。</li>
+            <li>晚餐候选：冰雪之门蟹料理，等待开放预约。</li>
+          </ul>
+          <p class="stay"><strong>继续住宿：</strong>Comfort Hotel ERA Sapporo North。</p>
+        </div>
+      </section>
+
+      <section class="stage" aria-labelledby="title-28">
+        <div class="stage-title">
+          <h2 id="title-28">12 月 28 日</h2><span class="weekday">2026 · 周一</span>
+          <span class="stage-label">六人同行 · 定山溪温泉</span>
+        </div>
+        <div class="shared-card">
+          <h3>奥定山溪温泉 佳松御苑 <span class="status confirmed">住宿已订</span></h3>
+          <ul class="plan-list">
+            <li>计划从札幌站乘酒店免费接驳前往佳松御苑，接驳预约等待回复。</li>
+            <li>3 间房、6 位成人；温泉 + 晚餐 + 早餐。</li>
+          </ul>
+          <p class="stay"><strong>住宿：</strong>Oku Jozankei Onsen Kasho Gyoen。</p>
+        </div>
+      </section>
+
+      <section class="stage" aria-labelledby="title-29">
+        <div class="stage-title">
+          <h2 id="title-29">12 月 29 日</h2><span class="weekday">2026 · 周二</span>
+          <span class="stage-label">六人同行 · 回东京</span>
+        </div>
+        <div class="shared-card">
+          <h3>温泉旅馆慢慢休息，再去机场 <span class="status tentative">包车待订</span></h3>
+          <p>上午在佳松御苑休息后出发，暂定约 10:30—11:00 包车前往新千岁机场；具体接送时间待确认。</p>
+        </div>
+        <article class="shared-card shared-flight">
+          <div class="shared-label">全部六人 <span class="status confirmed">机票已订</span></div>
+          <h3>札幌新千岁 → 东京羽田</h3>
+          <div class="flight">全日空 ANA · NH074 · 日本当地时间</div>
+          <div class="duration">飞行时长 1 小时 40 分</div>
+          <div class="leg">
+            <div><span class="clock">17:30</span><span class="airport">新千岁 CTS · 国内线航站楼 D</span></div>
+            <span class="arrow">→</span>
+            <div><span class="clock">19:10</span><span class="airport">羽田 HND · 到达航站楼待确认</span></div>
+          </div>
+          <p class="stay"><strong>东京住宿安排：</strong>中野 Airbnb，12/29—1/1；详细地址在家庭群内另行分享。</p>
+        </article>
+      </section>
+
+      <section class="stage" aria-labelledby="title-30">
+        <div class="stage-title">
+          <h2 id="title-30">12 月 30 日</h2><span class="weekday">2026 · 周三</span>
+          <span class="stage-label">六人共同安排 · 东京</span>
+        </div>
+        <div class="shared-card">
+          <h3>浅草、银座、逛街和咖啡 <span class="status tentative">暂定</span></h3>
+          <ul class="plan-list">
+            <li>全天保持灵活，按大家兴趣和体力安排。</li>
+            <li>较正式的午餐候选：Tempura Kondo 天妇罗。</li>
+            <li>晚餐考虑寿司、烧鸟或和牛烧肉，可分两组选择。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="stage" aria-labelledby="title-31">
+        <div class="stage-title">
+          <h2 id="title-31">12 月 31 日</h2><span class="weekday">2026 · 周四</span>
+          <span class="stage-label">六人共同安排 · 东京跨年</span>
+        </div>
+        <div class="shared-card">
+          <h3>自由活动，一起迎接新年 <span class="status tentative">暂定</span></h3>
+          <p>白天自由安排购物、咖啡；跨年夜可考虑除夜钟、跨年活动，或在跨年后初诣。候选地点：增上寺、明治神宫，开放情况及活动安排待确认。</p>
+        </div>
+      </section>
+
+      <section class="stage" id="day-01" aria-labelledby="title-01">
+        <div class="stage-title">
+          <h2 id="title-01">1 月 1 日</h2><span class="weekday">2027 · 周五</span>
           <span class="stage-label">成田 T1 返程 · 三组各自回家</span>
         </div>
+        <div class="meeting" style="margin: 0 0 12px"><strong>公共提醒：</strong>以去机场和返程为优先。若时间允许，可在附近简单早午餐或散步，不安排远距离游玩；元旦部分店铺可能晚开。前往的是<strong>成田 NRT，不是羽田 HND</strong>。</div>
         <div class="cards">
           <article class="card us">
             <div class="owner">丁超乐乐组</div>
@@ -343,15 +529,53 @@
         </aside>
       </section>
 
-      <footer>
-        <p><strong>资料说明：</strong>根据提供的 5 份 PDF 与 2 封川航电子客票邮件整理，资料日期 2026.09.18；航班时间及航站楼以航司最新通知为准。</p>
-        <p>飞行时长按计划起降时间计算，已计入时差及跨日，不含中转等待；实际耗时以当日航班为准。</p>
-        <p>川航邮件航班日期仅写「01JAN」；结合 2026 年出票日期及本次跨年行程，按 2027.01.01 整理。福州、厦门中转免费住宿已由家人确认；会合位置、日本住宿与游玩安排未确认。</p>
-        <p>家庭分享版 · 已省略英文姓名、座位号、订位号、票号、联系方式和付款资料。请收藏本页，查看行程时留意最后更新时间。</p>
-      </footer>
+      <section class="stage shared-card" id="shared-todos" aria-labelledby="todos-title">
+        <div class="shared-label">公共待办 · 当前预订计划</div>
+        <h2 id="todos-title">出发前逐项落实</h2>
+        <ul class="plan-list todo-list">
+          <li><strong>10/25 左右：</strong>预订函馆 うに むらかみ。</li>
+          <li><strong>10/27（美国）／10/28（日本）：</strong>预订小樽 Night Cruise。</li>
+          <li><strong>11/26 日本时间 10:00：</strong>计划购买 Hokuto 指定席，具体车次待定。</li>
+          <li><strong>11 月底：</strong>确认寿司处 あい川年末营业情况。</li>
+          <li>等待冰雪之门开放预约。</li>
+          <li>10 月日本出差后，再决定东京正式餐厅。</li>
+          <li><strong>12 月前后：</strong>预订佳松御苑 → 新千岁机场包车。</li>
+          <li>等待佳松御苑免费接驳的确认回复。</li>
+        </ul>
+      </section>
     </div>
   </main>
   <script>
+    const main = document.querySelector('main');
+    const groupFilter = document.getElementById('group-filter');
+    const groupButtons = Array.from(document.querySelectorAll('[data-select-group]'));
+    const groupDescription = document.getElementById('filter-description');
+    const groupNames = { all: '全部家人', us: '丁超乐乐组', cd: '超爸妈', ty: '乐妈、小姨' };
+
+    function selectGroup(group, updateUrl) {
+      const selected = Object.prototype.hasOwnProperty.call(groupNames, group) ? group : 'all';
+      main.dataset.group = selected;
+      groupButtons.forEach(button => {
+        button.setAttribute('aria-pressed', String(button.dataset.selectGroup === selected));
+      });
+      groupDescription.textContent = `显示${groupNames[selected]}行程；公共行程和通知始终保留。`;
+      if (updateUrl) {
+        const url = new URL(window.location.href);
+        if (selected === 'all') url.searchParams.delete('group');
+        else url.searchParams.set('group', selected);
+        window.history.replaceState(null, '', url.href);
+      }
+    }
+
+    selectGroup(new URL(window.location.href).searchParams.get('group'), false);
+    groupFilter.hidden = false;
+    groupButtons.forEach(button => {
+      button.addEventListener('click', () => selectGroup(button.dataset.selectGroup, true));
+    });
+    window.addEventListener('popstate', () => {
+      selectGroup(new URL(window.location.href).searchParams.get('group'), false);
+    });
+
     const refreshButton = document.getElementById('refresh-page');
     refreshButton.hidden = false;
     refreshButton.addEventListener('click', () => {
