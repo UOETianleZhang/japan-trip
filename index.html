@@ -190,7 +190,7 @@
         <span>1.1 从日本离开</span>
       </div>
       <div class="update-bar">
-        <span>最后更新：<time datetime="2026-09-21T13:46:00-07:00">2026.09.21 13:46（美国太平洋时间）</time></span>
+        <span>最后更新：<time datetime="2026-09-21T14:14:00-07:00">2026.09.21 14:14（美国太平洋时间）</time></span>
         <button class="refresh" id="refresh-page" type="button" hidden>刷新最新行程</button>
       </div>
     </header>
@@ -226,6 +226,7 @@
         <ul class="plan-list">
           <li><strong>12/24 成田抵达，12/25 羽田起飞：</strong>不是同一个机场。会合后前往羽田周边酒店，次日搭乘 07:25 早班机。</li>
           <li><strong>两段日本国内机票，六人均已订：</strong>12/25 JL0585 羽田 → 函馆；12/29 NH074 新千岁 → 羽田。</li>
+          <li><strong>12/28 佳松御苑接驳已订：</strong>札幌站 13:00 出发，14:15 到达酒店，均为日本时间。</li>
           <li><strong>免费中转住宿：</strong>福州、厦门均提供；酒店名称及入住方式出发前确认。</li>
           <li><strong>游玩安排可调整：</strong>天气、交通和营业情况优先；只有明确标为“已订”的项目按已订展示。</li>
         </ul>
@@ -315,12 +316,18 @@
           </article>
         </div>
         <div class="meeting"><strong>会合建议：</strong>等全员入境、提取行李后，在成田 T1 到达大厅碰面；具体集合点待定。<strong>14:30 是最后一组计划落地时间，不是会合时间。</strong></div>
-        <div class="shared-card" style="margin-top: 12px">
-          <div class="shared-label">六人共同安排</div>
-          <h3>东京过夜 · 休息、倒时差</h3>
-          <p>当天不安排正式游玩，入境后前往羽田周边，为次日早班机做准备。</p>
-          <p class="stay"><strong>住宿安排：</strong>Mercure Tokyo Haneda Airport。</p>
-          <p class="warn">成田 NRT 与羽田 HND 是不同机场，跨机场交通及次日清晨出发时间需提前安排。</p>
+        <div class="shared-card illustrated-plan" style="margin-top: 12px">
+          <figure class="trip-art">
+            <img src="assets/tokyo-arrival.svg" width="1000" height="600" alt="东京抵达原创插画：舷窗外的云海、机翼与远处城市" loading="lazy" decoding="async">
+            <figcaption>ARRIVAL · 落地，旅程开始</figcaption>
+          </figure>
+          <div>
+            <div class="shared-label">六人共同安排</div>
+            <h3>东京过夜 · 休息、倒时差</h3>
+            <p>当天不安排正式游玩，入境后前往羽田周边，为次日早班机做准备。</p>
+            <p class="stay"><strong>住宿安排：</strong>Mercure Tokyo Haneda Airport。</p>
+            <p class="warn">成田 NRT 与羽田 HND 是不同机场，跨机场交通及次日清晨出发时间需提前安排。</p>
+          </div>
         </div>
       </section>
 
@@ -371,14 +378,20 @@
           <h2 id="title-26">12 月 26 日</h2><span class="weekday">2026 · 周六</span>
           <span class="stage-label">六人同行 · 洞爷湖 → 札幌</span>
         </div>
-        <div class="shared-card">
-          <h3>函馆出发，途中游洞爷湖 <span class="status tentative">具体车次待定</span></h3>
-          <ul class="plan-list">
-            <li>上午从函馆出发，中途停留洞爷湖，游览湖畔、温泉街及灯饰。</li>
-            <li>晚餐候选：寿司处 あい川（生食组），或附近熟食餐厅（熟食组）。</li>
-            <li>晚上计划乘 Hokuto 前往札幌，指定席待预订。</li>
-          </ul>
-          <p class="stay"><strong>住宿安排：</strong>Comfort Hotel ERA Sapporo North。</p>
+        <div class="shared-card illustrated-plan">
+          <figure class="trip-art">
+            <img src="assets/lake-toya.svg" width="1000" height="600" alt="洞爷湖原创插画：雪山、湖心岛与驶过雪原的列车" loading="lazy" decoding="async">
+            <figcaption>LAKE TOYA · 把雪山装进车窗</figcaption>
+          </figure>
+          <div>
+            <h3>函馆出发，途中游洞爷湖 <span class="status tentative">具体车次待定</span></h3>
+            <ul class="plan-list">
+              <li>上午从函馆出发，中途停留洞爷湖，游览湖畔、温泉街及灯饰。</li>
+              <li>晚餐候选：寿司处 あい川（生食组），或附近熟食餐厅（熟食组）。</li>
+              <li>晚上计划乘 Hokuto 前往札幌，指定席待预订。</li>
+            </ul>
+            <p class="stay"><strong>住宿安排：</strong>Comfort Hotel ERA Sapporo North。</p>
+          </div>
         </div>
       </section>
 
@@ -387,14 +400,20 @@
           <h2 id="title-27">12 月 27 日</h2><span class="weekday">2026 · 周日</span>
           <span class="stage-label">六人同行 · 小樽一日游</span>
         </div>
-        <div class="shared-card">
-          <h3>小樽运河、堺町通 <span class="status tentative">游船及晚餐待订</span></h3>
-          <ul class="plan-list">
-            <li>白天自由游览小樽运河、堺町通。</li>
-            <li>计划体验 Blue Canal 和 Night Cruise，晚上返回札幌。</li>
-            <li>晚餐候选：冰雪之门蟹料理，等待开放预约。</li>
-          </ul>
-          <p class="stay"><strong>继续住宿：</strong>Comfort Hotel ERA Sapporo North。</p>
+        <div class="shared-card illustrated-plan">
+          <figure class="trip-art">
+            <img src="assets/otaru-canal.svg" width="1000" height="600" alt="小樽运河原创插画：蓝调暮色、积雪仓库、游船与暖黄路灯" loading="lazy" decoding="async">
+            <figcaption>OTARU · 等一盏运河边的灯</figcaption>
+          </figure>
+          <div>
+            <h3>小樽运河、堺町通 <span class="status tentative">游船及晚餐待订</span></h3>
+            <ul class="plan-list">
+              <li>白天自由游览小樽运河、堺町通。</li>
+              <li>计划体验 Blue Canal 和 Night Cruise，晚上返回札幌。</li>
+              <li>晚餐候选：冰雪之门蟹料理，等待开放预约。</li>
+            </ul>
+            <p class="stay"><strong>继续住宿：</strong>Comfort Hotel ERA Sapporo North。</p>
+          </div>
         </div>
       </section>
 
@@ -411,7 +430,7 @@
           <div>
             <h3>奥定山溪温泉 佳松御苑 <span class="status confirmed">住宿已订</span></h3>
             <ul class="plan-list">
-              <li>计划从札幌站乘酒店免费接驳前往佳松御苑，接驳预约等待回复。</li>
+              <li><strong>免费接驳已订：</strong>札幌站 <strong>13:00 出发 → 14:15 到达</strong>佳松御苑（日本时间），车程 1 小时 15 分。</li>
               <li>3 间房、6 位成人；温泉 + 晚餐 + 早餐。</li>
             </ul>
             <p class="stay"><strong>住宿：</strong>Oku Jozankei Onsen Kasho Gyoen。</p>
@@ -447,13 +466,19 @@
           <h2 id="title-30">12 月 30 日</h2><span class="weekday">2026 · 周三</span>
           <span class="stage-label">六人共同安排 · 东京</span>
         </div>
-        <div class="shared-card">
-          <h3>浅草、银座、逛街和咖啡 <span class="status tentative">暂定</span></h3>
-          <ul class="plan-list">
-            <li>全天保持灵活，按大家兴趣和体力安排。</li>
-            <li>较正式的午餐候选：Tempura Kondo 天妇罗。</li>
-            <li>晚餐考虑寿司、烧鸟或和牛烧肉，可分两组选择。</li>
-          </ul>
+        <div class="shared-card illustrated-plan">
+          <figure class="trip-art">
+            <img src="assets/tokyo-stroll.svg" width="1000" height="600" alt="东京散步原创插画：红灯笼、街角咖啡店和冬日暖阳" loading="lazy" decoding="async">
+            <figcaption>TOKYO STROLL · 走走停停，喝杯咖啡</figcaption>
+          </figure>
+          <div>
+            <h3>浅草、银座、逛街和咖啡 <span class="status tentative">暂定</span></h3>
+            <ul class="plan-list">
+              <li>全天保持灵活，按大家兴趣和体力安排。</li>
+              <li>较正式的午餐候选：Tempura Kondo 天妇罗。</li>
+              <li>晚餐考虑寿司、烧鸟或和牛烧肉，可分两组选择。</li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -567,7 +592,6 @@
           <li>等待冰雪之门开放预约。</li>
           <li>10 月日本出差后，再决定东京正式餐厅。</li>
           <li><strong>12 月前后：</strong>预订佳松御苑 → 新千岁机场包车。</li>
-          <li>等待佳松御苑免费接驳的确认回复。</li>
         </ul>
       </section>
     </div>
